@@ -45,54 +45,101 @@ class First_Page extends StatefulWidget {
 class _First_PageState extends State<First_Page> {
   @override
   Widget build(BuildContext context) {
+    List<String> cat = [
+      "Movies",
+      "Web Series",
+      "News",
+      "Live",
+      "AI",
+      "Cricket",
+      "Recently Uploaded"
+    ];
     return Scaffold(
-      appBar: AppBar(
-        // ignore: avoid_unnecessary_containers
-        //Inside title, two widgets has to be added. 1.image and 2.text
-        //So using container -> row -> widget list
-        title: Container(
-            child: Row(children: <Widget>[
-          SvgPicture.asset(
-            'images/yt_logo.svg',
-            semanticsLabel: 'My SVG Image',
-            height: 45,
-            width: 45,
-          ),
-        ])),
+        appBar: AppBar(
+          //Inside title, two widgets has to be added. 1.image and 2.text
+          //So using container -> row -> widget list
 
-        //Other than title, 3 buttons are added in appbar
-        //using a widget list
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon:
-                Image.asset('images/connect_device.png', height: 20, width: 20),
-            tooltip: 'Connect to device',
-            color: Colors.black,
-          ), //Connect to devices button
+          title: Container(
+              child: Row(children: <Widget>[
+            SvgPicture.asset(
+              'images/yt_logo.svg',
+              semanticsLabel: 'My SVG Image',
+              height: 35,
+              width: 35,
+            ),
+          ])),
 
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
-            tooltip: 'Notifications',
-            color: Colors.black,
-          ), //Notifications button
+          //Other than title, 3 buttons are added in appbar
+          //using a widget list
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset('images/connect_device.png',
+                  height: 25, width: 25),
+              tooltip: 'Connect to device',
+              color: Colors.black,
+            ), //Connect to devices button
 
-          IconButton(
-            onPressed: () {
-              //When search bar is pressed
-              showSearch(context: context, delegate: CustomSearchDelegate());
-            },
-            icon: const Icon(Icons.search),
-            tooltip: 'Search',
-            color: Colors.black,
-          ) //Search button
-        ],
-        //bg color of appbar
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-      ),
-    );
-    ;
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_none,
+                size: 30,
+              ),
+              tooltip: 'Notifications',
+              color: Colors.black,
+            ), //Notifications button
+
+            IconButton(
+              onPressed: () {
+                //When search bar is pressed
+                showSearch(context: context, delegate: CustomSearchDelegate());
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 30,
+              ),
+              tooltip: 'Search',
+              color: Colors.black,
+            ) //Search button
+          ],
+          //bg color of appbar
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            //Creating the horizontal list view for categories
+            Container(
+                height: 50,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 7,
+                    itemBuilder: (BuildContext context, int index) {
+                      //Using "container" rather than "listtile", because it is a horizontal list
+                      return Container(
+                        margin: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(7.0),
+                        height: 20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: const Color.fromRGBO(235, 234, 234, 0.872),
+                        ),
+                        child: Text(
+                          " ${cat[index]}",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      );
+                    })),
+
+                    //Adding a listbuilder for displaying thumbnails
+                    
+          ],
+        ));
   }
 }
 
@@ -304,25 +351,34 @@ class _LibraryPageState extends State<LibraryPage> {
           IconButton(
             onPressed: () {},
             icon:
-                Image.asset('images/connect_device.png', height: 20, width: 20),
+                Image.asset('images/connect_device.png', height: 25, width: 25),
             tooltip: 'Connect to device',
             color: Colors.black,
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
+            icon: const Icon(
+              Icons.notifications_none,
+              size: 30,
+            ),
             tooltip: 'Notifications',
           ),
           IconButton(
             onPressed: () {
               showSearch(context: context, delegate: CustomSearchDelegate());
             },
-            icon: const Icon(Icons.search),
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+            ),
             tooltip: 'Search',
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.settings),
+            icon: const Icon(
+              Icons.settings,
+              size: 30,
+            ),
             tooltip: 'Settings',
           ),
         ],
@@ -348,7 +404,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       body: pages[pageIndex],
       bottomNavigationBar: Container(
-        height: 70,
+        height: 75,
         decoration: const BoxDecoration(color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -364,6 +420,7 @@ class HomePageState extends State<HomePage> {
                     },
                     icon: const Icon(
                       Icons.home,
+                      size: 30,
                       color: Colors.black,
                     )),
                 const Text(
@@ -383,7 +440,7 @@ class HomePageState extends State<HomePage> {
                     });
                   },
                   icon: Image.asset('images/yt_shorts.png',
-                      height: 20, width: 20),
+                      height: 25, width: 25),
                 ),
                 const Text("Shorts")
               ],
@@ -401,7 +458,7 @@ class HomePageState extends State<HomePage> {
                     icon: const Icon(
                       Icons.add_rounded,
                       color: Colors.black,
-                      size: 40,
+                      size: 50,
                     )),
               ],
             ),
@@ -418,6 +475,7 @@ class HomePageState extends State<HomePage> {
                     icon: const Icon(
                       Icons.format_list_bulleted_outlined,
                       color: Colors.black,
+                      size: 30,
                     )),
                 const Text('Subscriptions')
               ],
@@ -433,7 +491,7 @@ class HomePageState extends State<HomePage> {
                     });
                   },
                   icon: Image.asset('images/yt_library.png',
-                      height: 20, width: 20),
+                      height: 25, width: 25),
                 ),
                 const Text("Library")
               ],
