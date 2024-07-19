@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
@@ -53,6 +54,81 @@ class _First_PageState extends State<First_Page> {
       "AI",
       "Cricket",
       "Recently Uploaded"
+    ];
+
+    List<String> thumbnails = [
+      'images/thumbnail1.jpg',
+      'images/thumbnail2.jpg',
+      'images/thumbnail3.jpg',
+      'images/thumbnail4.jpg',
+      'images/thumbnail5.jpg',
+      'images/thumbnail6.jpg',
+      'images/thumbnail7.jpg',
+      'images/thumbnail8.jpg',
+      'images/thumbnail9.jpg',
+      'images/thumbnail10.jpg',
+    ];
+
+    List<String> channel_logo = [
+      'images/logo_mkbhd.jpg',
+      'images/logo_mkbhd.jpg',
+      'images/logo_tech.jpg',
+      'images/logo_mrbeast.jpg',
+      'images/logo_tedex.jpg',
+      'images/logo_mrbean.jpg',
+      'images/logo_tech.jpg',
+      'images/logo_mkbhd.jpg',
+      'images/logo_markrober.jpg',
+      'images/logo_mkbhd.jpg',
+    ];
+
+    List<String> video_name = [
+      'My CS Journey',
+      'New updates in IOS',
+      'My desk setup',
+      'Challenging youtubers',
+      'Impact of self talk',
+      'MrBean Ep10',
+      'Inside Apple Park',
+      'Tech ring',
+      'Can you sail?',
+      'Interesting quantum computers'
+    ];
+    List<String> channel_name = [
+      'MKBHD',
+      'MKBHD',
+      'Mrwhosetheboss',
+      'MrBeast',
+      'TedEx',
+      'MrBean',
+      'Mrwhosetheboss',
+      'MKBHD',
+      'Mark Rober',
+      'MKBHD'
+    ];
+    List<String> views = [
+      '1M',
+      '1.5M',
+      '1M',
+      '2M',
+      '7K',
+      '1M',
+      '1M',
+      '2.5M',
+      '4M',
+      '2M'
+    ];
+    List<String> created = [
+      '1 yr ago',
+      '2 months ago',
+      '2 years ago',
+      '3 years ago',
+      '6 months ago',
+      '1 yr ago',
+      '2 months ago',
+      '2 years ago',
+      '3 years ago',
+      '6 months ago',
     ];
     return Scaffold(
         appBar: AppBar(
@@ -114,7 +190,7 @@ class _First_PageState extends State<First_Page> {
                 height: 50,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
+                    //shrinkWrap: true,
                     itemCount: 7,
                     itemBuilder: (BuildContext context, int index) {
                       //Using "container" rather than "listtile", because it is a horizontal list
@@ -136,8 +212,105 @@ class _First_PageState extends State<First_Page> {
                       );
                     })),
 
-                    //Adding a listbuilder for displaying thumbnails
-                    
+            //Adding a listbuilder for displaying thumbnails
+            Container(
+              height: 730,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    height: 275,
+                    decoration: BoxDecoration(color: Colors.white),
+                    child: Column(
+                      children: <Widget>[
+                        //Video image
+                        Container(
+                          width: double.infinity,
+                          child: Image.asset(
+                            thumbnails[index],
+                            height: 200,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        //Text below the thumbnail
+                        Container(
+                          height: 50,
+                          width: double.infinity,
+                          padding: EdgeInsets.all(5),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 50,
+                                height: 40,
+                                child: CircleAvatar(
+                                  radius: 50,
+                                  child: Image.asset(
+                                    channel_logo[index],
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 20,
+                                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      child: Text(
+                                        video_name[index],
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 20,
+                                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(
+                                            channel_name[index],
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          Text(
+                                            " . ",
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          Text(
+                                            views[index] + " views",
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          Text(
+                                            " . ",
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          Text(
+                                            created[index],
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ));
   }
@@ -404,7 +577,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       body: pages[pageIndex],
       bottomNavigationBar: Container(
-        height: 75,
+        height: 70,
         decoration: const BoxDecoration(color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
