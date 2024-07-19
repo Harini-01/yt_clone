@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,18 +52,12 @@ class _First_PageState extends State<First_Page> {
         //So using container -> row -> widget list
         title: Container(
             child: Row(children: <Widget>[
-          Image.asset(
-            "images/yt_logo.png",
+          SvgPicture.asset(
+            'images/yt_logo.svg',
+            semanticsLabel: 'My SVG Image',
             height: 45,
             width: 45,
           ),
-          const Text(
-            " YouTube",
-            style: TextStyle(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                fontWeight: FontWeight.bold,
-                fontSize: 40),
-          )
         ])),
 
         //Other than title, 3 buttons are added in appbar
