@@ -132,8 +132,7 @@ class _First_PageState extends State<First_Page> {
     ];
     return Scaffold(
         appBar: AppBar(
-          //Inside title, two widgets has to be added. 1.image and 2.text
-          //So using container -> row -> widget list
+          //Inside title app logo is added
 
           title: Container(
               child: Row(children: <Widget>[
@@ -167,8 +166,9 @@ class _First_PageState extends State<First_Page> {
             ), //Notifications button
 
             IconButton(
+              //Search button
               onPressed: () {
-                //When search bar is pressed
+                //When search button is pressed
                 showSearch(context: context, delegate: CustomSearchDelegate());
               },
               icon: const Icon(
@@ -177,7 +177,7 @@ class _First_PageState extends State<First_Page> {
               ),
               tooltip: 'Search',
               color: Colors.black,
-            ) //Search button
+            )
           ],
           //bg color of appbar
           backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -213,8 +213,8 @@ class _First_PageState extends State<First_Page> {
                     })),
 
             //Adding a listbuilder for displaying thumbnails
-            Container(
-              height: 730,
+            Expanded(
+                child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
@@ -310,7 +310,7 @@ class _First_PageState extends State<First_Page> {
                   );
                 },
               ),
-            )
+            ))
           ],
         ));
   }
